@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>XO</title>
+</head>
+
+<body>
+    <button onclick="reset()">replay</button>
+    <button onclick="score()">History</button>
+    <div class="conrainer">
+        <h1><span style="color: orange;">X</span><span style="color: gray;">O</span></h1>
+        <!-- <div class="rowText">
+            
+        </div> -->
+        <div class="rowText">
+             <h2 class="score" style="text-align: center;">
+                 <span style="color: orange; text-align: left;">Player : 
+                     <span id="scorePlayer">
+                        0
+                     </span> 
+                </span>
+                &nbsp;
+                <span style="color: gray; text-align: right;">Ai :
+                    <span id="scoreAi">
+                        0
+                    </span>
+                </span></h2>
+        </div>
+        
+       
+
+
+        <div class="row border-b">
+            <div class="col border-r"></div>
+            <div class="col border-r"></div>
+            <div class="col "></div>
+        </div>
+
+        <div class="row border-b">
+            <div class="col border-r"></div>
+            <div class="col border-r"></div>
+            <div class="col "></div>
+        </div>
+
+        <div class="row ">
+            <div class="col border-r"></div>
+            <div class="col border-r"></div>
+            <div class="col "></div>
+        </div>
+    </div>
+</body>
+
+</html>
