@@ -1,4 +1,6 @@
+
 const xo = new XO()
+var table = 0
 var turn = 0
 var his__score = new Array()
 xo.start()
@@ -12,6 +14,17 @@ function XO() {
     let last = new Array()
 
     this.start = function () {
+
+        if (document.getElementById("t5")) {
+            console.log("5*5")
+            table = 5
+        }
+
+        if (document.getElementById("t3")) {
+            console.log("3*3")
+            table = 3
+        }
+
         const config = { childList: true }
         const observer = new MutationObserver(() => takeTurn())
         board.position.forEach((e) => observer.observe(e, config))
@@ -63,39 +76,91 @@ function Board() {
 
     this.checkWin = function () {
         let winner = false
-        const dataWin = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
-        ]
+        var dataWin = []
+        if (table == 3) {
+            dataWin = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ]
+
+            const position = this.position
+
+            dataWin.forEach((e) => {
+                const pos0 = position[e[0]].innerText
+                const pos1 = position[e[1]].innerText
+                const pos2 = position[e[2]].innerText
+
+                const conditionWinPos = pos0 !== '' && pos0 === pos1 && pos1 === pos2
+
+                if (conditionWinPos) {
+                    winner = true
+                    e.forEach((index) => {
+                        position[index].className += ' hovers'
+                    })
+                }
+            })
+        } else {
+
+            dataWin = [
+                [0, 1, 2, 3],
+                [1, 2, 3, 4],
+                [5, 6, 7, 8],
+                [6, 7, 8, 9],
+                [10, 11, 12, 13],
+                [11, 12, 13, 14],
+                [15, 16, 17, 18],
+                [16, 17, 18, 19],
+                [20, 21, 22, 23],
+                [21, 22, 23, 24],
+
+                [0, 5, 10, 15],
+                [5, 10, 15, 20],
+                [1, 6, 11, 16],
+                [6, 11, 16, 21],
+                [2, 7, 12, 17],
+                [7, 12, 17, 22],
+                [3, 8, 13, 18],
+                [8, 13, 18, 23],
+                [4, 9, 14, 19],
+                [9, 14, 19, 24],
+
+                [3, 7, 11, 15],
+                [4, 8, 12, 16],
+                [8, 12, 16, 20],
+                [9, 13, 17, 21],
+
+                [1, 7, 13, 19],
+                [0, 6, 12, 18],
+                [6, 12, 18, 24],
+                [5, 11, 17, 23]
+            ]
+
+            const position = this.position
 
 
-        const position = this.position
+            dataWin.forEach((e) => {
+                const pos0 = position[e[0]].innerText
+                const pos1 = position[e[1]].innerText
+                const pos2 = position[e[2]].innerText
+                const pos3 = position[e[3]].innerText
+ 
+                const conditionWinPos = pos0 !== '' && pos0 === pos1 && pos1 === pos2 && pos2 === pos3
 
+                if (conditionWinPos) {
+                    winner = true
+                    e.forEach((index) => {
+                        position[index].className += ' hovers'
+                    })
+                }
+            })
+        }
 
-        dataWin.forEach((e) => {
-            const pos0 = position[e[0]].innerText
-            const pos1 = position[e[1]].innerText
-            const pos2 = position[e[2]].innerText
-
-            // console.log(pos0+" <<<<<<>>>>>")
-            // console.log(pos1+" <<<<<<>>>>>")
-            // console.log(pos2+" <<<<<<>>>>>")
-            // console.log("==============")
-            const conditionWinPos = pos0 !== '' && pos0 === pos1 && pos1 === pos2
-
-            if (conditionWinPos) {
-                winner = true
-                e.forEach((index) => {
-                    position[index].className += ' hovers'
-                })
-            }
-        })
         return winner
     }
 
