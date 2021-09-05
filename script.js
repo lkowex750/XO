@@ -34,15 +34,15 @@ function XO() {
             let last__index = last.length - 1
 
             //console.log(last[last__index] + "<<<<<<<<<<<")
-            if(last[last__index] == "Player"){
+            if (last[last__index] == "Player") {
                 var x = document.getElementById("scorePlayer")
-                var score = parseInt(x.innerText)      
-                x.innerText = score+1
+                var score = parseInt(x.innerText)
+                x.innerText = score + 1
 
-            }else if(last[last__index] == "Ai"){
+            } else if (last[last__index] == "Ai") {
                 var x = document.getElementById("scoreAi")
                 var score = parseInt(x.innerText)
-                x.innerText = score+1
+                x.innerText = score + 1
             }
             his__score.push(last[last__index])
             this.last = new Array()
@@ -74,9 +74,9 @@ function Board() {
             [2, 4, 6]
         ]
 
-        
+
         const position = this.position
-       
+
 
         dataWin.forEach((e) => {
             const pos0 = position[e[0]].innerText
@@ -110,9 +110,17 @@ function Player(board) {
     }
 
     function handleTurnTaken(event) {
-        event.target.innerText = 'x'
-        event.target.classList.add('winner');
-        board.position.forEach(e => e.removeEventListener('click', handleTurnTaken))
+        console.log(event.target.innerText)
+        if (event.target.innerText === 'x' || event.target.innerText === 'o') {
+            //
+        }
+        else {
+            event.target.innerText = 'x'
+            event.target.classList.add('winner');
+            board.position.forEach(e => e.removeEventListener('click', handleTurnTaken))
+        }
+
+
     }
 
 }
@@ -141,24 +149,24 @@ function reset() {
     const cells = document.querySelectorAll('.col')
     //console.log(cells.length)
 
-    cells.forEach((e) =>{
+    cells.forEach((e) => {
         e.innerText = ''
         e.classList.remove('winner')
         e.classList.remove('hovers')
     })
-    
+
     this.turn = 0
 }
 
 function score() {
     let score = ""
-    
+
     let countLoop = 1
-    his__score.forEach((e) =>{
-        if(e != "Tie"){
-            
+    his__score.forEach((e) => {
+        if (e != "Tie") {
+
             score += "Round " + "[" + (countLoop) + "] " + "       " + e + " Win!\n"
-        }else{
+        } else {
             score += "Round " + "[" + (countLoop) + "] " + "       " + e + " !!\n"
         }
         countLoop++
